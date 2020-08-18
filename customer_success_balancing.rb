@@ -7,6 +7,12 @@ class CustomerSuccessBalancing
     @customer_success_away = customer_success_away
   end
 
+  def getAvailableCS(customer_success, customer_success_away)
+    return customer_success.select do |hash|
+      !customer_success_away.include?(hash[:id])
+    end
+  end
+
   # Returns the id of the CustomerSuccess with the most customers
   def execute
     # Write your solution here
