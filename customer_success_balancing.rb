@@ -55,7 +55,7 @@ class CustomerSuccessBalancingTests < Minitest::Test
     assert_equal balancer.execute, 0
   end
 
-  def test_scenario_six
+  def test_scenario_seven
     balancer = CustomerSuccessBalancing.new(array_to_map([100, 99, 88, 3, 4, 5]), array_to_map([10, 10, 10, 20, 20, 30, 30, 30, 20, 60]), [4, 5, 6])
     assert_equal balancer.execute, 3
   end
