@@ -19,6 +19,7 @@ class CustomerSuccessBalancing
     availables.sort_by! { |cs| cs[:score] }
 
     processedCSS = availables.map do |cs|
+      cs[:count] = 0
       for customer in customers do
         if customer[:score] <= cs[:score] && !watchUsedCustomer.include?(customer[:id])
           watchUsedCustomer.push(customer[:id])
