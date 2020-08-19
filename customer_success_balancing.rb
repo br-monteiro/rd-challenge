@@ -16,7 +16,7 @@ class CustomerSuccessBalancing
   def getProcessedCSS(availables, customers)
     watchUsedCustomer = []
     watchCSCount = Hash.new(0)
-    availables.sort_by! { |cs| cs[:score]}
+    availables.sort_by! { |cs| cs[:score] }
 
     processedCSS = availables.map do |cs|
       for customer in customers do
