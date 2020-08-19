@@ -112,6 +112,15 @@ class CustomerSuccessBalancingTests < Minitest::Test
     assert_equal 3, balancer.execute
   end
 
+  def test_getAvailableCSS
+    balancer = CustomerSuccessBalancing.new([], [], [])
+    commonCSS = array_to_map([10, 77])
+    assert_equal [{:id => 2, :score => 77}], balancer.getAvailableCSS(commonCSS, [1])
+    assert_equal [{:id => 1, :score => 10}, {:id => 2, :score => 77}], balancer.getAvailableCSS(commonCSS, [])
+    assert_equal [], balancer.getAvailableCSS(commonCSS, [1, 2])
+    assert_equal [], balancer.getAvailableCSS([], [])
+  end
+
   def test_getProcessedCSS
     balancer = CustomerSuccessBalancing.new([], [], [])
 
@@ -120,6 +129,19 @@ class CustomerSuccessBalancingTests < Minitest::Test
 
     expected = [{:id=>2, :score=>77, :count=>2}, {:id=>1, :score=>20, :count=>0}]
     assert_equal expected, balancer.getProcessedCSS(array_to_map([20, 77]), array_to_map([77, 73]))
+
+    assert_equal [{:id=>1, :score=>77, :count=>0}], balancer.getProcessedCSS(array_to_map([77]), [])
+    assert_equal [], balancer.getProcessedCSS([], array_to_map([77]))
+  end
+
+  def test_isFullEqualCount
+    balancer = CustomerSuccessBalancing.new([], [], [])
+    assert_equal true, balancer.isFullEqualCount([{:count => 1}, {:count => 1}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 2}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 2}, {:count => 3}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 2}, {:count => 1}])
+    assert_equal true, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 1}])
+  end
 
   def test_getBusiestCSS
     balancer = CustomerSuccessBalancing.new([], [], [])
