@@ -7,7 +7,7 @@ class CustomerSuccessBalancing
     @customer_success_away = customer_success_away
   end
 
-  def getAvailableCS(customer_success, customer_success_away)
+  def getAvailableCSS(customer_success, customer_success_away)
     return customer_success.select do |hash|
       !customer_success_away.include?(hash[:id])
     end
