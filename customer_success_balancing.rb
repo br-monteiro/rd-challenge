@@ -66,7 +66,7 @@ class CustomerSuccessBalancingTests < Minitest::Test
 
   def test_scenario_two
     css = array_to_map([11, 21, 31, 3, 4, 5])
-    customers = array_to_map( [10, 10, 10, 20, 20, 30, 30, 30, 20, 60])
+    customers = array_to_map([10, 10, 10, 20, 20, 30, 30, 30, 20, 60])
     balancer = CustomerSuccessBalancing.new(css, customers, [])
     assert_equal 0, balancer.execute
   end
