@@ -49,9 +49,7 @@ class CustomerSuccessBalancing
       return 0
     elsif processedCSS.length == 1
       processedCSS.first[:id]
-    elsif processedCSS.first[:count] == processedCSS.last[:count]
-      return 0
-    elsif isFullEqualCount(processedCSS)
+    elsif processedCSS.first[:count] == processedCSS.last[:count] || isFullEqualCount(processedCSS)
       return 0
     else
       return processedCSS.first[:id]
