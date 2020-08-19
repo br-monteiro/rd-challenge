@@ -39,9 +39,9 @@ class CustomerSuccessBalancing
   def getBusiestCSS(processedCSS)
     if processedCSS.length == 0
       return 0
-    elseif processedCSS.length == 1
+    elsif processedCSS.length == 1
       return processedCSS.first[:id]
-    elseif processedCSS.first[:count] == processedCSS.last[:count]
+    elsif processedCSS.first[:count] == processedCSS.last[:count]
       return 0
     else
       processedCSS.first[:id]
