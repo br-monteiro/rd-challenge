@@ -117,8 +117,13 @@ class CustomerSuccessBalancingTests < Minitest::Test
     expected = [{:id=>2, :score=>77, :count=>2}, {:id=>1, :score=>20, :count=>0}]
     assert_equal expected, balancer.getProcessedCSS(array_to_map([20, 77]), array_to_map([77, 73]))
 
-    assert_equal [{:id=>1, :score=>77, :count=>0}], balancer.getProcessedCSS(array_to_map([77]), [])
-    assert_equal [], balancer.getProcessedCSS([], array_to_map([77]))
+  def test_isFullEqualCount
+    balancer = CustomerSuccessBalancing.new([], [], [])
+    assert_equal true, balancer.isFullEqualCount([{:count => 1}, {:count => 1}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 2}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 2}, {:count => 3}])
+    assert_equal false, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 2}, {:count => 1}])
+    assert_equal true, balancer.isFullEqualCount([{:count => 1}, {:count => 1}, {:count => 1}])
   end
 
   def array_to_map(arr)
