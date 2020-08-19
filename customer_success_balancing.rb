@@ -36,6 +36,16 @@ class CustomerSuccessBalancing
     processedCSS.sort_by { |value| -value[:count] }
   end
 
+  def hasEqualsCount(processedCSS)
+    counts = Hash.new(0)
+    for cs in processedCSS do
+      counts[cs[:count]] += 1
+    end
+
+    values = counts.values
+    (values.first > 1 && values.last > 1) && values.first == values.last
+  end
+
   def getBusiestCSS(processedCSS)
     if processedCSS.length == 0
       return 0
