@@ -55,8 +55,9 @@ class CustomerSuccessBalancing
 
   # Returns the id of the CustomerSuccess with the most customers
   def execute
-    # Write your solution here
-    nil
+    availablesCSS = getAvailableCSS(@customer_success, @customer_success_away)
+    processedCSS = getProcessedCSS(availablesCSS, @customers)
+    getBusiestCSS(processedCSS)
   end
 end
 
