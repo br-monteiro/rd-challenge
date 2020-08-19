@@ -13,6 +13,29 @@ class CustomerSuccessBalancing
     end
   end
 
+  def getProcessedCSS(availables, customers)
+    watchUsedCustomer = []
+    watchCSCount = {}
+
+    processedCSS = availables.map do |cs|
+      for customer in customers do
+        if customer[:score] <= cs[:score] && !watchUsedCustomer.include?(customer[:id])
+          watchUsedCustomer.push(customer[:id])
+
+          if watchCSCount[cs[:id]]
+            watchCSCount[cs[:id]] += 1
+          else
+            watchCSCount[cs[:id]] = 1
+          end
+        end
+
+        cs[:count] = watchCSCount[cs[:id]]
+      end
+      cs
+    end
+    processedCSS.sort_by { |value| -value[:count] }
+  end
+
   # Returns the id of the CustomerSuccess with the most customers
   def execute
     # Write your solution here
