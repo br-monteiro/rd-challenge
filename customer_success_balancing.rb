@@ -93,17 +93,17 @@ class CustomerSuccessBalancingTests < Minitest::Test
 
   def test_scenario_five
     balancer = CustomerSuccessBalancing.new(array_to_map([100, 2, 3, 3, 4, 5]), array_to_map([10, 10, 10, 20, 20, 30, 30, 30, 20, 60]), [])
-    assert_equal balancer.execute, 1
+    assert_equal 1, balancer.execute
   end
 
   def test_scenario_six
     balancer = CustomerSuccessBalancing.new(array_to_map([100, 99, 88, 3, 4, 5]), array_to_map([10, 10, 10, 20, 20, 30, 30, 30, 20, 60]), [1, 3, 2])
-    assert_equal balancer.execute, 0
+    assert_equal 0, balancer.execute
   end
 
   def test_scenario_seven
     balancer = CustomerSuccessBalancing.new(array_to_map([100, 99, 88, 3, 4, 5]), array_to_map([10, 10, 10, 20, 20, 30, 30, 30, 20, 60]), [4, 5, 6])
-    assert_equal balancer.execute, 3
+    assert_equal 3, balancer.execute
   end
 
   def array_to_map(arr)
