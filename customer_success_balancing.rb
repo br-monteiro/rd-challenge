@@ -36,6 +36,18 @@ class CustomerSuccessBalancing
     processedCSS.sort_by { |value| -value[:count] }
   end
 
+  def getBusiestCSS(processedCSS)
+    if processedCSS.length == 0
+      return 0
+    elseif processedCSS.length == 1
+      return processedCSS.first[:id]
+    elseif processedCSS.first[:count] == processedCSS.last[:count]
+      return 0
+    else
+      processedCSS.first[:id]
+    end
+  end
+
   # Returns the id of the CustomerSuccess with the most customers
   def execute
     # Write your solution here
