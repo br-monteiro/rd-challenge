@@ -107,6 +107,15 @@ class CustomerSuccessBalancingTests < Minitest::Test
     assert_equal 3, balancer.execute
   end
 
+  def test_getAvailableCSS
+    balancer = CustomerSuccessBalancing.new([], [], [])
+    commonCSS = array_to_map([10, 77])
+    assert_equal [{:id => 2, :score => 77}], balancer.getAvailableCSS(commonCSS, [1])
+    assert_equal [{:id => 1, :score => 10}, {:id => 2, :score => 77}], balancer.getAvailableCSS(commonCSS, [])
+    assert_equal [], balancer.getAvailableCSS(commonCSS, [1, 2])
+    assert_equal [], balancer.getAvailableCSS([], [])
+  end
+
   def array_to_map(arr)
     out = []
     arr.each_with_index { |score, index| out.push({ id: index + 1, score: score }) }
