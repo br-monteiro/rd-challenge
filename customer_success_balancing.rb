@@ -29,7 +29,7 @@ class CustomerSuccessBalancing
           end
         end
 
-        cs[:count] = watchCSCount[cs[:id]]
+        cs[:count] = watchCSCount[cs[:id]] ? watchCSCount[cs[:id]] : 0
       end
       cs
     end
