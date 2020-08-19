@@ -28,7 +28,7 @@ class CustomerSuccessBalancing
         cs[:count] = watchCSCount[cs[:id]] ? watchCSCount[cs[:id]] : 0
       end
 
-      return cs
+      cs
     end
     processedCSS.sort_by { |value| -value[:count] }
   end
