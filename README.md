@@ -1,5 +1,5 @@
 ### Go RDoers! :rocket:
-this is my submission for awesome RD challenge :sunglasses:
+this is my submission for the awesome RD challenge :sunglasses:
 
 ### Dependencies
 - [Docker](https://docs.docker.com/get-docker/)
